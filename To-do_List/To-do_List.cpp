@@ -1,6 +1,5 @@
 #include "Header.h"
 
-void deleteItem(int id);
 
 struct TodoItem
 {
@@ -23,8 +22,42 @@ struct TodoList
 	string name;
 	TodoItem* todoitems = new TodoItem[size];
 
-	void deleteItem(int id);
-	void updateItem(TodoItem item);
+
+	void updateItem(TodoItem item)
+	{
+		int choose;
+
+		cout << "Choose what u want to change: ";
+			"\n1. id",
+			"\n2. name",
+			"\n3. description",
+			"\n4. day",
+			"\n5. month",
+			"\n6. year",
+			"\n7. deadline";
+		cin >> choose;
+
+		switch (choose)
+		{
+		case 1:
+			cin >> item.id;
+		case 2:
+			cin >> item.name;
+		case 3:
+			cin >> item.description;
+		case 4:
+			cin >> item.day;
+		case 5:
+			cin >> item.month;
+		case 6:
+			cin >> item.year;
+		case 7:
+			cin >> item.deadline;
+		default:
+			cout << "Incorrect input!";
+			break;
+		}
+	}
 	void clean();
 
 	void addNewItem(TodoItem item)
