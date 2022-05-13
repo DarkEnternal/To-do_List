@@ -17,10 +17,46 @@ struct TodoItem
 struct TodoList
 {
 	int size = 5;
+	int counter = 0;
 
 	int id;
 	string name;
 	TodoItem* todoitems = new TodoItem[size];
+
+	void deleteItem(int id);
+	void updateItem(TodoItem item);
+	void clean();
+
+	void addNewItem(TodoItem item)
+	{
+		if (counter > size - 1)
+		{
+			extendArr();
+		}
+		
+		todoitems[counter++] = item;
+
+	}
+
+	void extendArr()
+	{
+		TodoItem* temp = todoitems;
+		size *= 1.5;
+		TodoItem* todoitems = new TodoItem[size];
+
+		for (int i = 0; i < counter; i++)
+		{
+			todoitems[i].id = temp[i].id;
+			todoitems[i].name = temp[i].name;
+			todoitems[i].description = temp[i].description;
+			todoitems[i].day = temp[i].day;
+			todoitems[i].month = temp[i].month;
+			todoitems[i].year = temp[i].year;
+			todoitems[i].deadline = temp[i].deadline;
+		}
+
+		delete temp;
+	}
 
 	void deleteItem(int id)
 	{
@@ -40,6 +76,27 @@ struct TodoList
 
 int main()
 {
+	TodoItem todoitem;
+	TodoList list;
+
+	cout << "Enter id: ";
+	cin >> todoitem.id;
+	cout << "Enter name: ";
+	cin >> todoitem.name;
+	cout << "Enter description: ";
+	cin >> todoitem.description;
+	cout << "Enter day: ";
+	cin >> todoitem.day;
+	cout << "Enter month: ";
+	cin >> todoitem.month;
+	cout << "Enter year: ";
+	cin >> todoitem.year;
+	cout << "Enter deadline: ";
+	cin >> todoitem.deadline;
+
 	
+	list.addNewItem(todoitem);
+	
+
 }
 
