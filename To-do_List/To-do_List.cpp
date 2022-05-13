@@ -1,5 +1,7 @@
 #include "Header.h"
 
+void deleteItem(int id);
+
 struct TodoItem
 {
 	int id;
@@ -20,11 +22,19 @@ struct TodoList
 	string name;
 	TodoItem* todoitems = new TodoItem[size];
 
-	void addNewItem(TodoItem item);
-	void deleteItem(int id);
-	void updateItem(TodoItem item);
-	void clean();
-
+	void deleteItem(int id)
+	{
+		TodoItem* newTodoitems = new TodoItem[size];
+		for (int i= 0, k = 0; i < size - 1; i++, k++)
+		{
+			if (i == id)
+			{
+				continue;
+			}
+			newTodoitems[k] = todoitems[i];
+			
+		}
+	}
 };
 
 
